@@ -17,10 +17,18 @@ jobs:
       - uses: actions/checkout@v2
 
       # create dacpac using MSBUILD executable
-      - name: create dacpac
-        run: |
-          & 'C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe' CustomerDB_VS\CustomerDB_VS.sqlproj /p:Configuration=Release
-      # Publish an artifact
+      - name: Setup MSBuild.exe
+        uses: warrenbuckley/Setup-MSBuild@v1
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+
+      - name: MSBuild
+        working-directory: CustomerDB_VS
+        run: msbuild CustomerDB_VS.sqlproj
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+          
+     # Publish an artifact
       - uses: actions/upload-artifact@v2
         with:
           name: DACPAC
