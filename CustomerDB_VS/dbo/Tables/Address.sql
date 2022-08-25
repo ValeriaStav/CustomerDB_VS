@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Addresses] (
+﻿CREATE TABLE [dbo].[Address] (
     [AddressId]    INT            IDENTITY (1, 1) NOT NULL,
     [CustomerId]   INT            NOT NULL,
     [AddressLine]  NVARCHAR (100) NOT NULL,
@@ -11,6 +11,6 @@
     PRIMARY KEY CLUSTERED ([AddressId] ASC),
     CHECK ([AddressType]='Billing' OR [AddressType]='Shipping'),
     CHECK ([Country]='Canada' OR [Country]='USA'),
-    FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customers] ([CustomerId])
+    FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customer] ([CustomerId])
 );
 
