@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Notes] (
+﻿CREATE TABLE [dbo].[Note] (
     [NoteId]     INT            IDENTITY (1, 1) NOT NULL,
     [CustomerId] INT            NOT NULL,
     [Note]       NVARCHAR (255) NOT NULL,
